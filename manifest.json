@@ -1,11 +1,11 @@
 {
-    "name": "sentinela_web",
-    "short_name": "sentinela_web",
+    "name": "Sentinela",
+    "short_name": "Sentinela",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "Sentinela",
+    "background_color": "#0D0D0D",
+    "theme_color": "#0D0D0D",
+    "description": "Monitoramento em tempo real de vídeo, áudio e localização.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
