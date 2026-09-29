@@ -20,14 +20,16 @@ const messaging = firebase.messaging();
 messaging.onBackgroundMessage((payload) => {
   const data = payload.data || {};
   const title = data.title || 'Modo Sentinela ativo';
+  const who = data.ownerName ? `${data.ownerName} está` : 'Uma conta que você acompanha está';
   return self.registration.showNotification(title, {
-    body: data.body || '',
+    body: data.body || `${who} compartilhando a localização em tempo real. Toque para acompanhar ao vivo.`,
     icon: '/icons/Icon-192.png',
     badge: '/icons/Icon-192.png',
     // Uma notificação por dono: reativar o modo substitui a anterior em vez de empilhar.
     tag: data.ownerUid ? `sentinela-live-${data.ownerUid}` : 'sentinela-live',
     renotify: true,
     requireInteraction: true,
+    actions: [{ action: 'open', title: 'Ver ao vivo' }],
     data: { url: data.url || '/' },
   });
 });
