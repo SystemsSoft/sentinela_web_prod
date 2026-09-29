@@ -31,6 +31,22 @@
 
   <title>Sentinela</title>
   <link rel="manifest" href="manifest.json">
+
+  <!--
+    Guarda o convite de instalação do PWA. O Chrome dispara "beforeinstallprompt" uma vez, cedo,
+    antes de o Flutter carregar; o botão "Baixar app" do Perfil usa este evento guardado.
+  -->
+  <script>
+    window.addEventListener('beforeinstallprompt', function (event) {
+      event.preventDefault();
+      window.sentinelaInstallPrompt = event;
+      window.dispatchEvent(new Event('sentinela-install-available'));
+    });
+    window.addEventListener('appinstalled', function () {
+      window.sentinelaInstallPrompt = null;
+      window.dispatchEvent(new Event('sentinela-installed'));
+    });
+  </script>
 </head>
 <body>
   <!--
